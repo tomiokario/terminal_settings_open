@@ -4,7 +4,14 @@ macOS / Windows / WSL で使うターミナル設定集です。
 
 Starship、WezTerm、tmux、Neovim の設定を、必要なファイルだけコピーして使える形で置いています。クローンしてそのまま試すことも、自分の環境に合わせて一部だけ取り込むこともできます。
 
+**image 1: WezTerm・Starship**
+
 <img width="590" height="450" alt="Screenshot 2026-05-21 at 15 03 00" src="https://github.com/user-attachments/assets/144e43b5-d465-4489-8680-65d4029940c1" />
+
+**image 2: tmuxによる画面分割とNeovim**
+
+<img width="1310" height="660" alt="Screenshot 2026-05-21 at 15 07 08" src="https://github.com/user-attachments/assets/a41566fe-08e1-413c-b42c-e8ffa9909903" />
+
 
 ## 内容
 
