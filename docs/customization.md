@@ -1,55 +1,55 @@
-# Customization
+# カスタマイズ
 
-Treat every file in this repository as a starting point.
+このリポジトリの各ファイルは、カスタマイズの出発点として扱ってください。
 
 ## Starship
 
-Edit `config/starship.toml` or `config/starship-wsl.toml`.
+`config/starship.toml` または `config/starship-wsl.toml` を編集します。
 
-Common changes:
+よく変更する箇所:
 
-- adjust prompt colors in the custom directory modules
-- enable or disable cloud provider modules
-- change Git branch and Git status formatting
-- tune the path truncation length
+- custom directory module の prompt 色
+- cloud provider module の有効化 / 無効化
+- Git branch と Git status の表示形式
+- path の省略長
 
 ## WezTerm
 
-Edit `config/wezterm/common.lua` for shared appearance.
+共通の見た目は `config/wezterm/common.lua` で調整します。
 
-Common changes:
+よく変更する箇所:
 
 - `font_size`
 - `color_scheme`
 - `window_background_opacity`
-- tab title colors
+- tab title の色
 
-Edit the OS-specific files when changing default shells:
+default shell を変える場合は、OS 固有のファイルを編集します。
 
 - `config/wezterm/macos.lua`
 - `config/wezterm/windows.lua`
 
 ## tmux
 
-Edit `config/tmux/tmux.conf`.
+`config/tmux/tmux.conf` を編集します。
 
-Common changes:
+よく変更する箇所:
 
 - prefix key
-- split bindings
-- pane navigation bindings
-- status bar colors
+- split binding
+- pane 移動 binding
+- status bar の色
 - history limit
 
 ## Neovim
 
-Edit `config/nvim/init.vim`.
+`config/nvim/init.vim` を編集します。
 
-Common changes:
+よく変更する箇所:
 
 - color scheme
 - plugin list
-- indentation settings
-- key mappings
+- indentation 設定
+- key mapping
 
-Review each copied file before applying it to your home directory, especially when you already have existing terminal settings.
+既存のターミナル設定がある場合は、home directory に反映する前に必ず差分を確認してください。

@@ -1,10 +1,10 @@
 # terminal_settings_open
 
-macOS / Windows / WSL で使う terminal settings の共有用セットです。
+macOS / Windows / WSL で使うターミナル設定集です。
 
-Starship、WezTerm、tmux、Neovim の設定を、必要なファイルだけコピーして使える形で置いています。clone してそのまま試すことも、自分の環境に合わせて一部だけ取り込むこともできます。
+Starship、WezTerm、tmux、Neovim の設定を、必要なファイルだけコピーして使える形で置いています。クローンしてそのまま試すことも、自分の環境に合わせて一部だけ取り込むこともできます。
 
-## Contents
+## 内容
 
 ```text
 config/
@@ -25,16 +25,16 @@ docs/
   usage.md
 ```
 
-## Quick Start
+## 使い始める
 
-Clone the repository:
+リポジトリをクローンします。
 
 ```sh
 git clone git@github.com:tomiokario/terminal_settings_open.git
 cd terminal_settings_open
 ```
 
-Copy only the files you want to use. For example, on macOS:
+使いたいファイルだけコピーします。macOS の例は次のとおりです。
 
 ```sh
 mkdir -p ~/.config/wezterm ~/.config/nvim
@@ -44,19 +44,19 @@ cp config/nvim/init.vim ~/.config/nvim/init.vim
 cp config/tmux/tmux.conf ~/.tmux.conf
 ```
 
-For Windows and WSL paths, see [docs/usage.md](docs/usage.md).
+Windows と WSL の配置例は [docs/usage.md](docs/usage.md) を参照してください。
 
-## Design Notes
+## 設計メモ
 
-The settings are split by tool and by OS-specific behavior:
+設定は、ツールごと、OS 固有の挙動ごとに分けています。
 
-- shared terminal appearance and behavior live in common files
-- macOS and Windows WezTerm differences live in separate Lua modules
-- WSL uses a dedicated Starship config
-- tmux is intended for macOS and WSL
+- 共通の見た目や挙動は共通ファイルに置く
+- macOS と Windows の WezTerm 差分は別の Lua module に分ける
+- WSL は専用の Starship 設定を使う
+- tmux は macOS / WSL で使う前提にする
 
-See [docs/design.md](docs/design.md) and the GitHub Wiki for the human-readable design overview.
+設計の詳しい説明は [docs/design.md](docs/design.md) と GitHub Wiki を参照してください。
 
-## Customize
+## カスタマイズ
 
-These files are intended to be edited after cloning. Start with [docs/customization.md](docs/customization.md), then adjust colors, shell paths, prompt modules, key bindings, and editor settings for your own workflow.
+このリポジトリの設定ファイルは、クローン後に編集して使う前提です。[docs/customization.md](docs/customization.md) を起点に、色、shell path、prompt module、key binding、editor 設定を自分の作業スタイルに合わせて調整してください。

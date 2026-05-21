@@ -1,33 +1,33 @@
-# Design
+# 設計
 
-This repository keeps terminal settings organized by tool and by operating-system boundary.
+このリポジトリでは、ターミナル設定をツール単位と OS 境界で整理しています。
 
-## Goals
+## 目的
 
-- Share a consistent terminal look across macOS, Windows, and WSL.
-- Keep OS-specific shell behavior out of shared config files.
-- Make each setting file easy to copy, inspect, and customize.
-- Prefer explicit files over hidden setup behavior.
+- macOS / Windows / WSL で、近い見た目の terminal 環境を使う。
+- OS 固有の shell 挙動を共通設定から分ける。
+- 各設定ファイルをコピー、確認、カスタマイズしやすくする。
+- 暗黙の setup より、明示的な設定ファイルを優先する。
 
 ## Starship
 
-`config/starship.toml` is the main prompt configuration for macOS and Windows. It uses custom directory modules so the current directory is visually stronger than ancestor directories.
+`config/starship.toml` は macOS / Windows 向けの主な prompt 設定です。custom directory module を使い、現在の directory が親 directory より強く見えるようにしています。
 
-`config/starship-wsl.toml` keeps the same prompt idea but is separated for WSL-specific use.
+`config/starship-wsl.toml` は同じ prompt の考え方を WSL 向けに分けた設定です。
 
 ## WezTerm
 
-WezTerm is split into small Lua modules:
+WezTerm は小さな Lua module に分けています。
 
-- `wezterm.lua` loads the config and chooses the OS-specific module.
-- `common.lua` contains shared appearance and tab title behavior.
-- `macos.lua` sets the macOS shell and blur behavior.
-- `windows.lua` sets PowerShell and Windows-specific background behavior.
+- `wezterm.lua`: 設定を読み込み、OS に応じた module を選ぶ
+- `common.lua`: 共通の見た目と tab title の挙動
+- `macos.lua`: macOS の shell と blur 設定
+- `windows.lua`: PowerShell と Windows 固有の背景設定
 
 ## tmux
 
-`config/tmux/tmux.conf` is intended for macOS and WSL. It uses `C-a` as the prefix, vi-style copy mode, pane navigation bindings, and status styling that matches the terminal theme.
+`config/tmux/tmux.conf` は macOS / WSL で使う前提です。prefix は `C-a`、copy mode は vi style、pane 移動 key と terminal theme に合わせた status 表示を設定しています。
 
 ## Neovim
 
-`config/nvim/init.vim` is a single-file Neovim configuration. It is intended to be easy to copy first and refactor later if your setup grows.
+`config/nvim/init.vim` は単一ファイルの Neovim 設定です。まずコピーして使い、設定が大きくなったら後から分割できる形にしています。
