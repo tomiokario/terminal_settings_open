@@ -10,7 +10,7 @@ Starship、WezTerm、tmux、Neovim の設定を、必要なファイルだけコ
 
 **image 2: tmuxによる画面分割とNeovim**
 
-<img width="1310" height="660" alt="Screenshot 2026-05-21 at 15 07 08" src="https://github.com/user-attachments/assets/a41566fe-08e1-413c-b42c-e8ffa9909903" />
+<img alt="Screenshot 2026-05-21 at 15 07 08" src="https://github.com/user-attachments/assets/a41566fe-08e1-413c-b42c-e8ffa9909903" />
 
 
 ## 内容
