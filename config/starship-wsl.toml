@@ -1,0 +1,94 @@
+format = "\n$username${custom.directory_linux}$git_branch$git_status\n$character"
+
+add_newline = false
+
+[username]
+show_always = true
+style_user = "fg:#FFFFFF bg:#ae8b2d bold"
+style_root = "fg:#FFFFFF bg:#ae8b2d bold"
+format = "[ $user ]($style)"
+disabled = false
+
+[fill]
+symbol = " "
+
+[directory]
+disabled = true
+style = "fg:#FFFFFF bg:#1995ad bold"
+truncation_length = 10
+truncate_to_repo = false
+truncation_symbol = ".../"
+read_only = "  "
+read_only_style = "fg:#FFFFFF bg:#1995ad"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+
+[custom.directory_linux]
+os = "linux"
+shell = ["bash"]
+command = '''
+path="$PWD"
+if [[ -n "$HOME" && "$path" == "$HOME"* ]]; then
+    path="~${path#$HOME}"
+fi
+
+IFS='/' read -r -a raw_parts <<< "$path"
+parts=()
+for part in "${raw_parts[@]}"; do
+    if [[ -n "$part" ]]; then
+        parts+=("$part")
+    fi
+done
+
+if (( ${#parts[@]} == 0 )); then
+    parts=("/")
+elif (( ${#parts[@]} > 10 )); then
+    keep=("${parts[@]:$((${#parts[@]} - 9))}")
+    parts=("..." "${keep[@]}")
+fi
+
+total=${#parts[@]}
+ancestor_shade=192
+printf '\033[1;48;2;25;149;173m '
+for i in "${!parts[@]}"; do
+    if (( i == total - 1 )); then
+        shade=255
+    else
+        shade=$ancestor_shade
+    fi
+    if (( i > 0 )); then
+        printf '\033[38;2;%d;%d;%dm/' "$ancestor_shade" "$ancestor_shade" "$ancestor_shade"
+    fi
+    printf '\033[38;2;%d;%d;%dm%s' "$shade" "$shade" "$shade" "${parts[$i]}"
+done
+printf ' \033[0m'
+'''
+when = "true"
+format = "$output"
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = ""
+style = "bg:#5c6d74"
+format = "[[ $symbol $branch ](fg:#FFFFFF bg:#5c6d74)]($style)"
+
+[git_status]
+style = "bg:#5c6d74"
+format = "[[($all_status$ahead_behind )](fg:#FFFFFF bg:#5c6d74)]($style)"
+
+[cmd_duration]
+min_time = 1
+style = "fg:#e0af68"
+format = "[$duration]($style)"
+
+[time]
+disabled = false
+time_format = "%R"
+format = "[[ | %T $time ](fg:#a0a9cb)]($style)"
+
+[character]
+vimcmd_symbol = "[V](bold green) "
