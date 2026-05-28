@@ -26,6 +26,14 @@ function M.apply(wezterm)
     },
   }
 
+  local function tab_title(tab)
+    if tab.tab_title and #tab.tab_title > 0 then
+      return tab.tab_title
+    end
+
+    return tab.active_pane.title
+  end
+
   wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
     local background = '#5c6d74'
     local foreground = '#FFFFFF'
@@ -35,7 +43,7 @@ function M.apply(wezterm)
       foreground = '#FFFFFF'
     end
 
-    local title = '   ' .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. '   '
+    local title = '   ' .. wezterm.truncate_right(tab_title(tab), max_width - 1) .. '   '
 
     return {
       { Background = { Color = background } },
