@@ -11,9 +11,9 @@
 
 ## Starship
 
-`config/starship.toml` は macOS / Windows 向けの主な prompt 設定です。custom directory module を使い、現在の directory が親 directory より強く見えるようにしています。
+`config/starship.toml` は macOS / Windows 向けの主な prompt 設定です。Starship 標準の directory module を使い、背景色と省略長を揃えています。
 
-`config/starship-wsl.toml` は同じ prompt の考え方を WSL 向けに分けた設定です。
+`config/starship-wsl.toml` は同じ prompt の考え方を WSL 向けに分けた設定です。WSL では Linux shell 上で path 表示を整えるため、専用の custom directory module を使います。
 
 ## WezTerm
 

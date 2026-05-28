@@ -8,7 +8,8 @@
 
 よく変更する箇所:
 
-- custom directory module の prompt 色
+- directory module の prompt 色
+- WSL custom directory module の path 表示
 - cloud provider module の有効化 / 無効化
 - Git branch と Git status の表示形式
 - path の省略長

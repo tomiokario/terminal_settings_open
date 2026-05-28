@@ -1,6 +1,7 @@
-format = "\n${custom.directory_macos}${custom.directory_windows}$git_branch$git_status\n$character"
+format = "\n$directory$git_branch$git_status\n$character"
 
 add_newline = false
+command_timeout = 2000
 
 [username]
 style_user = "white bold"
@@ -12,7 +13,7 @@ disabled = false
 symbol = " "
 
 [directory]
-disabled = true
+disabled = false
 style = "fg:#FFFFFF bg:#1995ad bold"
 truncation_length = 10
 truncate_to_repo = false
@@ -20,87 +21,6 @@ truncation_symbol = ".../"
 read_only = "  "
 read_only_style = "fg:#FFFFFF bg:#1995ad"
 format = "[ $path ]($style)[$read_only]($read_only_style)"
-
-[custom.directory_macos]
-os = "macos"
-shell = ["bash"]
-command = '''
-path="$PWD"
-if [[ -n "$HOME" && "$path" == "$HOME"* ]]; then
-    path="~${path#$HOME}"
-fi
-
-IFS='/' read -r -a raw_parts <<< "$path"
-parts=()
-for part in "${raw_parts[@]}"; do
-    if [[ -n "$part" ]]; then
-        parts+=("$part")
-    fi
-done
-
-if (( ${#parts[@]} == 0 )); then
-    parts=("/")
-elif (( ${#parts[@]} > 10 )); then
-    keep=("${parts[@]:$((${#parts[@]} - 9))}")
-    parts=("..." "${keep[@]}")
-fi
-
-total=${#parts[@]}
-ancestor_shade=192
-printf '\033[1;48;2;25;149;173m '
-for i in "${!parts[@]}"; do
-    if (( i == total - 1 )); then
-        shade=255
-    else
-        shade=$ancestor_shade
-    fi
-    if (( i > 0 )); then
-        printf '\033[38;2;%d;%d;%dm/' "$ancestor_shade" "$ancestor_shade" "$ancestor_shade"
-    fi
-    printf '\033[38;2;%d;%d;%dm%s' "$shade" "$shade" "$shade" "${parts[$i]}"
-done
-printf ' \033[0m'
-'''
-when = "true"
-format = "$output"
-
-[custom.directory_windows]
-os = "windows"
-shell = ["powershell"]
-command = '''
-$path = (Get-Location).ProviderPath
-$userHome = [Environment]::GetFolderPath('UserProfile')
-if ($userHome -and $path.StartsWith($userHome, [StringComparison]::OrdinalIgnoreCase)) {
-    $path = '~' + $path.Substring($userHome.Length)
-}
-
-$separator = if ($path.Contains('\')) { '\' } else { '/' }
-$parts = @($path -split '[\\/]' | Where-Object { $_ -ne '' })
-if ($parts.Count -eq 0) {
-    $parts = @($separator)
-} elseif ($parts.Count -gt 10) {
-    $parts = @('...') + $parts[($parts.Count - 9)..($parts.Count - 1)]
-}
-
-$esc = [char]27
-$total = $parts.Count
-$ancestorShade = 192
-Write-Host -NoNewline "$esc[1;48;2;25;149;173m "
-for ($i = 0; $i -lt $total; $i++) {
-    if ($i -eq ($total - 1)) {
-        $shade = 255
-    } else {
-        $shade = $ancestorShade
-    }
-    if ($i -gt 0) {
-        Write-Host -NoNewline "$esc[38;2;$ancestorShade;$ancestorShade;$ancestorShade`m$separator"
-    }
-    Write-Host -NoNewline "$esc[38;2;$shade;$shade;$shade`m$($parts[$i])"
-}
-Write-Host -NoNewline " $esc[0m"
-'''
-when = "true"
-format = "$output"
 
 [aws]
 disabled = true

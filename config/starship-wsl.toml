@@ -1,6 +1,7 @@
 format = "\n$username${custom.directory_linux}$git_branch$git_status\n$character"
 
 add_newline = false
+command_timeout = 2000
 
 [username]
 show_always = true
@@ -62,7 +63,7 @@ for i in "${!parts[@]}"; do
 done
 printf ' \033[0m'
 '''
-when = "true"
+when = true
 format = "$output"
 
 [aws]
